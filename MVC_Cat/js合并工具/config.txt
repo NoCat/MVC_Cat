@@ -1,0 +1,32 @@
+﻿merge files
+../js/jquery.js
+../js/jquery.cookie.js
+../js/main.js
+
+../js/dialog/dialog.js
+../js/dialog/titledialog.js
+../js/dialog/messagebox.js
+../js/dialog/signupdialog.js
+../js/Dialog/SignUpSuccessDialog.js
+../js/Dialog/LoginDialog.js
+../js/Dialog/ResetPasswordDialog.js
+../js/Dialog/CreatePackageDialog.js
+../js/Dialog/CreateImageDialog.js
+../js/Dialog/UploadDialog.js
+
+../js/Format/User.js
+
+../js/Widget/Frame.js
+../js/Widget/Search.js
+../js/Widget/image.js
+../js/Widget/package.js
+../js/Widget/image-view.js
+../js/Widget/user-info.js
+../js/Widget/package-info.js
+../js/Widget/User.js
+../js/Widget/window.js
+
+../js/initialize.js
+
+output path
+out.js
