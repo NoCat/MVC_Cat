@@ -42,7 +42,7 @@ public class MPComment
             string name = text.Substring(pos + 1, length - 1);
             try
             {
-                var user = new MPUser(name, MPUserConstructTypes.Username);
+                var user = new MPUser(name, MPUserConstructTypes.Name);
                 MPCommentMention.Create(id, user.ID, pos, length);
             }
             catch (MiaopassException) { }

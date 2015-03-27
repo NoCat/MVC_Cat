@@ -50,6 +50,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <div id="ad" style="display:none">
+        <script charset="gbk" src="http://p.tanx.com/ex?i=mm_26054915_7856098_30982792"></script>
+    </div>
     <asp:ContentPlaceHolder ID="body" runat="server">
     </asp:ContentPlaceHolder>
 </body>

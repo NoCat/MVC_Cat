@@ -9,8 +9,7 @@ public class MPImage
     public int PackageID { get; set; }
     public int FileID { get; set; }
     public DateTime CreatedTime { get; set; }
-    public MPImageFromTypes FromType { get; set; }
-    public int FromInfo { get; set; }
+    public int Via { get; set; }
     public string Url { get; set; }
     public int UserID { get; set; }
 
@@ -39,7 +38,7 @@ public class MPImage
 
     void Initialize(string condition, params object[] objs)
     {
-        string sql = "select packageid,fileid,createdtime,fromtype,frominfo,url,description,id,userid from image where " + condition;
+        string sql = "select packageid,fileid,createdtime,via,url,description,id,userid from image where " + condition;
         var res = DB.SExecuteReader(sql, objs);
 
         if (res.Count == 0)
@@ -49,17 +48,34 @@ public class MPImage
         PackageID = Convert.ToInt32(row[0]);
         FileID = Convert.ToInt32(row[1]);
         CreatedTime = Convert.ToDateTime(row[2]);
-        FromType = (MPImageFromTypes)Convert.ToByte(row[3]);
-        FromInfo = Convert.ToInt32(row[4]);
-        Url = (string)row[5];
-        _description = (string)row[6];
-        ID = Convert.ToInt32(row[7]);
-        UserID = Convert.ToInt32(row[8]);
+        Via = Convert.ToInt32(row[3]);
+        Url = (string)row[4];
+        _description = (string)row[5];
+        ID = Convert.ToInt32(row[6]);
+        UserID = Convert.ToInt32(row[7]);
     }
 
-    public static int Create(int packageid, int fileid, int userid, MPImageFromTypes fromtype, int frominfo, string url, string description)
+    public void Delete()
     {
-       return  DB.SInsert("insert into image (packageid,fileid,userid,fromtype,frominfo,url,description) values (?,?,?,?,?,?,?)", packageid, fileid, userid, fromtype, frominfo, url, description);
+        //数据处理事务
+        using (var db = new DB())
+        {
+            db.BeginTransaction();
+            //从image表中删除数据    
+            db.ExecuteNonQuery("delete from image where id=?", ID);
+            //从praise表中删除关于赞这张图片的数据
+            db.ExecuteNonQuery("delete from praise where info=? and type=?", ID, MPPraiseTypes.Image);
+            //更新package表中的封面数据
+            db.ExecuteNonQuery("update package set coverid=0 where id=? and coverid=?", PackageID, ID);
+            //更新image表中,转存过这张图的行数据更新\
+            db.ExecuteNonQuery("update image set via=0 where via=?",ID);
+            db.EndTransaction();
+        }
+    }
+
+    public static int Create(int packageid, int fileid, int userid, int via, string url, string description)
+    {
+       return  DB.SInsert("insert into image (packageid,fileid,userid,via,url,description) values (?,?,?,?,?,?)", packageid, fileid, userid,via, url, description);
     }
 
     void SetAttribute(string name, object value)

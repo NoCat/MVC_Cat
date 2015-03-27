@@ -119,8 +119,8 @@ public class MPUser
             case MPUserConstructTypes.Email:
                 Initialize("email=?", str);
                 break;
-            case MPUserConstructTypes.Username:
-                Initialize("username=?", str);
+            case MPUserConstructTypes.Name:
+                Initialize("name=?", str);
                 break;
         }
 
@@ -208,5 +208,5 @@ public enum UserAuthorities
 public enum MPUserConstructTypes
 {
     Email,
-    Username
+    Name
 }

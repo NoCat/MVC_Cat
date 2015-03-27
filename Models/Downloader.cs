@@ -152,7 +152,7 @@ public static class Downloader
         {
             fileid = MPFile.Create(filestream);
         }
-        MPImage.Create(task.Package.ID, fileid, task.User.ID, MPImageFromTypes.Pick, 0, task.From, task.Description);
+        MPImage.Create(task.Package.ID, fileid, task.User.ID,  0, task.From, task.Description);
 
         File.Delete(filePath1);
         File.Delete(filePath2);

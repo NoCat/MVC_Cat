@@ -7,4 +7,7 @@ $(function ()
     MPWidget.Image.Bind();
     MPWidget.Package.Bind();
     MPWidget.User.Bind();
+
+    MPPage = {};
+    MPPage.ad = $("#ad ins");
 });

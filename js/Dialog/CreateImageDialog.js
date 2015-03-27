@@ -4,7 +4,7 @@
 /// <reference path="Dialog.js" />
 MPCreateImageDialog =//创建图片
     {
-        New: function (imageSrc, title, description) {
+        New: function (imageSrc, title, description,isEdit,source) {
             var strVar = "";
             strVar += "<div class=\"dialog-mask\">";
             strVar += "    <div class=\"dialog-box\">";
@@ -19,12 +19,11 @@ MPCreateImageDialog =//创建图片
             strVar += "                    <img src=\"{0}\" width=\"180\">";
             strVar += "                <\/div>";
             strVar += "                <div class=\"right\">";
+            strVar += "                    <h3>图包</h3>";
             strVar += "                    <div class=\"package-list\">";
             strVar += "                        <div class=\"current\">";
-            strVar += "                            <div class=\"name\">&nbsp;";
-            strVar += "                            <\/div>";
-            strVar += "                            <div class=\"arrow\">";
-            strVar += "                            <\/div>";
+            strVar += "                            <div class=\"name\">&nbsp;<\/div>";
+            strVar += "                            <div class=\"arrow\"><\/div>";
             strVar += "                        <\/div>";
             strVar += "                        <div class=\"drop-list\">";
             strVar += "                            <div class=\"selections\"><\/div>";
@@ -36,16 +35,28 @@ MPCreateImageDialog =//创建图片
             strVar += "                            <\/div>";
             strVar += "                        <\/div>";
             strVar += "                    <\/div>";
+            strVar += "                     <div class=\"seperator\"></div>";
+            strVar += "                     <h3 >描述</h3>";
             strVar += "                    <div class=\"description\">";
             strVar += "                        <textarea>{2}<\/textarea>";
             strVar += "                        <div class=\"tip\">";
             strVar += "                            给图片添加 #标签#，可以更好地整理图片哦~";
             strVar += "                        <\/div>";
             strVar += "                    <\/div>";
+            if (isEdit == true)
+            {
+                strVar += "                     <div class=\"seperator\"></div>";
+                strVar += "                     <h3>来自</h3>";
+                strVar += "                     <input class=\"source\"  type=\"text\" value=\"{}\">".Format(source);
+            }
             strVar += "                <\/div>";
             strVar += "            <\/div>";
             strVar += "        <\/div>";
             strVar += "        <div class=\"dialog-btns\">";
+            if (isEdit == true)
+            {
+                strVar += "            <div class=\"delete\">删除<\/div>";
+            }
             strVar += "            <div class=\"ok\">确认<\/div>";
             strVar += "            <div class=\"cancel\">取消<\/div>";
             strVar += "        <\/div>";
@@ -63,8 +74,10 @@ MPCreateImageDialog =//创建图片
             var filterate = dialog.Content.find(".filtrate");//筛选栏输入后显示的内容
             var filterSearch = dialog.Content.find(".filter input");//筛选栏
             dialog.onOK = null;
+            dialog.onDelete = null;
             dialog.description = "";
             dialog.packageId = 0;
+            dialog.source = "";
             dialog.Title(title);
 
             $.post(host + "/ajax/query-packages", {}, function (data) {
@@ -173,6 +186,12 @@ MPCreateImageDialog =//创建图片
             dialog.Content.find(".cancel").click(function () {
                 dialog.Close();
             })//取消按钮
+
+            dialog.Content.find(".delete").click(function ()
+            {
+                //获取对话框的信息,包括图包id,描述,图片来源,这个功能可以写成一个函数
+                //然后就是触发onDelete
+            })
 
             return dialog;
         }

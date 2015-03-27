@@ -12,11 +12,12 @@
     cursor: pointer;
     border-radius: 3px;
     color: @color;
-    background-color: @backgroundColor;
+    background-image: linear-gradient(@backgroundColor,darken(@backgroundColor,8%));
     border: 1px solid darken(@backgroundColor,8%);
 
     &:hover {
-        background-color: darken(@backgroundColor,5%);
+        @hoverColor: lighten(@backgroundColor,5%);
+        background-image: linear-gradient(@hoverColor,darken(@hoverColor,8%));
     }
 }
 
@@ -506,13 +507,13 @@ table {
                 }
 
                 .name {
-                    display:block;
+                    display: block;
                     font-size: 15px;
                 }
 
                 .text {
                     font-size: 14px;
-                    margin-top:4px;
+                    margin-top: 4px;
                 }
 
                 .name, .text {
@@ -521,33 +522,33 @@ table {
             }
         }
 
-        .add-comment{
-            padding:15px;
+        .add-comment {
+            padding: 15px;
             border-top: 1px solid darken(@baseWhite,8%);
 
-            .avt{
+            .avt {
                 .comments.comment.avt;
             }
 
-            .new-comment{
-                padding-left:@avtSize+10px;
-                width:auto;
+            .new-comment {
+                padding-left: @avtSize+10px;
+                width: auto;
 
-                textarea{
-                    width:605px;
-                    height:60px;
-                    border:1px solid darken(@baseWhite,20%);
-                    border-radius:3px;
-                    padding:4px;
-                    font-size:14px;
-                    resize:none;
+                textarea {
+                    width: 605px;
+                    height: 60px;
+                    border: 1px solid darken(@baseWhite,20%);
+                    border-radius: 3px;
+                    padding: 4px;
+                    font-size: 14px;
+                    resize: none;
                 }
             }
 
-            .submit{
-                float:right;
-                .btnblue(28px);        
-                margin-top:10px;        
+            .submit {
+                float: right;
+                .btnblue(28px);
+                margin-top: 10px;
             }
         }
     }
@@ -626,14 +627,13 @@ table {
     }
 
     input[type="text"], input[type="password"] {
-        padding-left: 15px;
-        display: block;
-        height: 32px;
-        line-height: 32px;
-        width: 90%;
-        margin: 5px 0;
         border: 1px solid #ccc;
         border-radius: 3px;
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        margin: 5px 0;
+        padding-left: 10px;
     }
 
     .dialog-btns {
@@ -641,7 +641,7 @@ table {
         padding: 10px 20px;
         text-align: center;
 
-        .ok, .cancel {
+        .ok, .cancel, .delete {
             display: inline-block;
             width: 60px;
             margin: 0 5px;
@@ -650,11 +650,15 @@ table {
         }
 
         .ok {
-            .btnblue(24px);
+            .btnblue(30px);
         }
 
         .cancel {
-            .btnwhite(24px);
+            .btnwhite(30px);
+        }
+
+        .delete {
+            .btn(#cc3030,#fff,30px);
         }
     }
 
@@ -797,6 +801,17 @@ table {
             padding-left: @previewSize+15px;
             width: @rightWidth;
 
+            h3 {
+                font-size: 15px;
+                font-weight: normal;
+                margin-bottom: 5px;
+            }
+
+            .seperator {
+                border-bottom: 1px solid #ccc;
+                margin: 10px -3px 7px;
+            }
+
             .package-list {
                 @packageListHeight: 30px;
 
@@ -869,9 +884,7 @@ table {
                     }
                 }
             }
-
             .description {
-                margin-top: 15px;
                 border: @innerBorder;
                 border-radius: 3px;
 
@@ -891,6 +904,10 @@ table {
                     border-top: @innerBorder;
                     padding: 4px 6px;
                 }
+            }
+
+            .source{
+                width:@rightWidth+(-10px);
             }
         }
     }

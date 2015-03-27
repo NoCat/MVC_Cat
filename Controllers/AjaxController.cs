@@ -196,7 +196,7 @@ namespace MVC_Cat.Controllers
 
                             MPPackage package = new MPPackage(packageId);
                             MPFile file = new MPFile(md5);
-                            MPImage.Create(package.ID, file.ID, user.ID, MPImageFromTypes.Upload, 0, "", description);
+                            MPImage.Create(package.ID, file.ID, user.ID, 0, "", description);
                         }
                         break;
                     #endregion
@@ -282,7 +282,7 @@ namespace MVC_Cat.Controllers
                             var package = new MPPackage(Tools.GetInt32FromRequest(Request.Form["package_id"]));
                             var description = Tools.GetStringFromRequest(Request.Form["description"]);
 
-                            MPImage.Create(package.ID, image.FileID, user.ID, MPImageFromTypes.Repin, image.ID, "", description);
+                            MPImage.Create(package.ID, image.FileID, user.ID, image.ID,image.Url, description);
                         }
                         break;
                     #endregion
@@ -310,12 +310,12 @@ namespace MVC_Cat.Controllers
                             }
                             var user = CheckLogin();
                             int imageId = Tools.GetInt32FromRequest(Request.Form["image_id"]);
-                            string text = Tools.GetStringFromRequest(Request.QueryString["text"]);
+                            string text = Tools.GetStringFromRequest(Request.Form["text"]);
 
                             var image = new MPImage(imageId);
 
                             int commentId = MPComment.Create(image.ID, user.ID, text);
-                            okMsg.id = commentId;
+                            okMsg.comment = new JSON.Comment(new MPComment(commentId));
                         }
                         break;
                     #endregion
@@ -332,6 +332,32 @@ namespace MVC_Cat.Controllers
 
                             DB.SExecuteNonQuery("delete from comment_mention where commentid=?", commentId);
                             DB.SExecuteNonQuery("delete from comment where id=?", commentId);
+                        }
+                        break;
+                    #endregion
+                    #region delete-image 删除图片
+                    case "delete-image":
+                        {
+                            var user = CheckLogin();
+                            var imageId = Tools.GetInt32FromRequest(Request.Form["id"]);
+                            var image = new MPImage(imageId);
+                            if (user.ID != image.ID)
+                                throw new MiaopassException("无操作权限");
+
+                            image.Delete();
+                        }
+                        break;
+                    #endregion
+                    #region delete-package 删除图包
+                    case "delete-package":
+                        {
+                            var user = CheckLogin();
+                            var packageId = Tools.GetInt32FromRequest(Request.Form["id"]);
+                            var package = new MPPackage(packageId);
+                            if (package.UserID != user.ID)
+                                throw new MiaopassException("无操作权限");
+
+                            package.Delete();
                         }
                         break;
                     #endregion

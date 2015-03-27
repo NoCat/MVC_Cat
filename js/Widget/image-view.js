@@ -74,7 +74,6 @@ MPWidget.ImageView.New = function (imageDetail)
     strVar += "            <\/div>";
     strVar += "        <\/div>";
     strVar += "        <div class=\"ad-piece piece\">";
-    strVar += "             <script charset=\"gbk\" src=\"http://p.tanx.com/ex?i=mm_26054915_7856098_29204897 \"></script>";
     strVar += "        <\/div>";
     strVar += "    <\/div>";
     strVar += "    <div class=\"bottom\"><\/div>";
@@ -95,6 +94,9 @@ MPWidget.ImageView.New = function (imageDetail)
             })
         };
         wf.onBottom();
+
+        var ad = res.find(".ad-piece.piece");
+        ad.append(MPPage.ad);
     }
 
     var ImageItem = {};

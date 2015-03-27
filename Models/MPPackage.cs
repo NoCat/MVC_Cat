@@ -65,6 +65,29 @@ public class MPPackage
         _coverID = Convert.ToInt32(row[3]);
     }
 
+    public void Delete()
+    {
+        var list = DB.SExecuteReader("select id from image where packageid=?", ID);
+        //清空所有图片
+        foreach (var item in list)
+        {
+            var image = new MPImage(Convert.ToInt32(item[0]));
+            image.Delete();
+        }
+        //开始事务处理
+        using(var db=new DB())
+        {
+            db.BeginTransaction();
+            //删除package表中的记录
+            db.ExecuteNonQuery("delete from package where id=?", ID);
+            //删除praise表中的记录
+            db.ExecuteNonQuery("delete from praise where type=? and info=?", MPPraiseTypes.Package, ID);
+            //删除following表中的记录
+            db.ExecuteNonQuery("delete from following where type=? and info=?", MPFollowingTypes.Package, ID);
+            db.EndTransaction();
+        }
+    }
+
     public static int Create(int userid, string title)
     {
         try
