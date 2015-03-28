@@ -50,7 +50,6 @@ MPWidget.UserInfo.New = function ()
 
     var content = $(strVar);
     content.waterfall = MPWaterFall.New($(window), content.find(".waterfall"), 4, 236, 6, 6, 6, 6);
-
     return content;
     
 }

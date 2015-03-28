@@ -21,7 +21,7 @@ $(function () {
             waterfallPush(packageInfo, MPWidget.Image, null, "id");
             break;
     }
-
+    packageInfo.waterfall.Resize();
     function waterfallPush(packageinfo, type, typeDetail, returnField) {
         var max = packageinfo.waterfall.Push(MPData.datas, type, typeDetail, returnField);
         packageinfo.waterfall.onBottom = function () {
