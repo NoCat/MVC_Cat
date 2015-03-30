@@ -143,22 +143,22 @@ namespace MVC_Cat.Controllers
                             int chunk = Tools.GetInt32FromRequest(Request.QueryString["chunk"]);
                             string tempFileName = Tools.GetStringFromRequest(Request.QueryString["name"]);
 
-                            try
-                            {
+                            //try
+                            //{
                                 using (FileStream fs = System.IO.File.Create(Server.MapPath("~/MP_Temp/" + tempFileName + "_" + chunk)))
                                 {
                                     fs.Write(Request.InputStream);
                                 }
-                            }
-                            catch
-                            {
-                                throw new MiaopassUploadErrorException();
-                            }
+                            //}
+                            //catch
+                            //{
+                            //    throw new MiaopassUploadErrorException();
+                            //}
 
                             if (chunk == (chunks - 1))
                             {
-                                try
-                                {
+                                //try
+                                //{
                                     string mergerName = Server.MapPath("~/MP_Done/" + tempFileName);
                                     using (var merger = System.IO.File.Create(mergerName))
                                     {
@@ -175,11 +175,11 @@ namespace MVC_Cat.Controllers
                                         okMsg.hash = Tools.FileMd5(merger);
                                     }
                                     System.IO.File.Delete(mergerName);
-                                }
-                                catch
-                                {
-                                    throw new MiaopassUploadErrorException();
-                                }
+                                //}
+                                //catch
+                                //{
+                                //    throw new MiaopassUploadErrorException();
+                                //}
                             }
                         }
                         break;
@@ -361,11 +361,34 @@ namespace MVC_Cat.Controllers
                         }
                         break;
                     #endregion
+                    #region edit-image 编辑图片
+                    case "edit-image":
+                        {
+                            var user = CheckLogin();
+                            var imageId = Tools.GetInt32FromRequest(Request.Form["id"]);
+                            var packageId = Tools.GetInt32FromRequest(Request.Form["package_id"]);
+                            var description = Tools.GetStringFromRequest(Request.Form["description"]);
+                            var source = Tools.GetStringFromRequest(Request.Form["source"]);
+
+                            var image = new MPImage(imageId);
+                            if (image.UserID != user.ID)
+                                throw new MiaopassException("无权限操作");
+
+                            var package = new MPPackage(packageId);
+
+                            image.Edit(packageId, description, source);
+                        }
+                        break;
+                    #endregion
                 }
             }
             catch (MiaopassException exception)
             {
                 return Content(Tools.JSONStringify(new { code = exception.Code, msg = exception.Message }));
+            }
+            catch(Exception exception)
+            {
+                return Content(Tools.JSONStringify(new { code = 500, msg = exception.Message }));
             }
 
             return Content(Tools.JSONStringify(okMsg), "application/json");

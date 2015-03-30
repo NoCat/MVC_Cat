@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text.RegularExpressions;
 
 public class MPComment
 {
@@ -29,26 +30,56 @@ public class MPComment
     public static int Create(int imageid, int userid, string text)
     {
         int id = DB.SInsert("insert into comment (imageid,userid,`text`) values (?,?,?)", imageid, userid, text);
-        int pos = 0;
-        while (true)
+       Regex r=new Regex("@[\\w\\S]+");
+
+        var match=r.Match(text);
+        while(match.Success==true)
         {
-            pos = text.IndexOf('@', pos);
-            if (pos == -1)
-                break;
-
-            int end = text.IndexOf(' ', pos);
-            int length = end - pos;
-
-            string name = text.Substring(pos + 1, length - 1);
+            int pos = match.Index;
+            int len = match.Length;
+            string name = match.Value.Substring(1);
             try
             {
                 var user = new MPUser(name, MPUserConstructTypes.Name);
-                MPCommentMention.Create(id, user.ID, pos, length);
+                MPCommentMention.Create(id, user.ID, pos, len);
             }
             catch (MiaopassException) { }
-
-            pos = end + 1;
+            match=match.NextMatch();
         }
+      
+        //int pos = 0;
+        //while (true)
+        //{
+        //    pos = text.IndexOf('@', pos);
+        //    if (pos == -1)
+        //        break;
+
+        //    int end1 = text.IndexOf(' ', pos);
+        //    int end2 = text.IndexOf('@', pos);
+        //    int end = -1;
+        //    if(end1<end2 && end1!=-1)
+        //    {
+        //        end = end1;
+        //    }
+        //    else
+
+        //    if (end == -1)
+        //        end = text.Length;
+
+        //    int length = end - pos;
+
+        //    string name = text.Substring(pos + 1, length - 1);
+        //    try
+        //    {
+        //        var user = new MPUser(name, MPUserConstructTypes.Name);
+        //        MPCommentMention.Create(id, user.ID, pos, length);
+        //    }
+        //    catch (MiaopassException) { }
+
+        //    if (end == text.Length)
+        //        break;
+        //    pos = end + 1;
+        //}
         return id;
     }
 }

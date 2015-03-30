@@ -29,6 +29,25 @@
     .btn(darken( @baseWhite,3%),darken(@baseGrey,20%),@height);
 }
 
+.mp_input(@width,@height)
+{
+    @paddingVertical:5px;
+    @paddingHorizontal:6px;
+    border:1px solid darken(@baseWhite,25%);
+    font-size:14px;
+    line-height:@height+(-2*@paddingVertical);
+    width:@width+(-2*@paddingHorizontal);
+    border-radius:3px;
+    color:darken(@baseGrey,10%);
+    background:darken(@baseWhite,3%);
+    padding:@paddingVertical @paddingHorizontal;
+
+    &:focus{
+        background:@baseWhite;
+        color:black;
+    }
+}
+
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
     margin: 0;
     padding: 0;
@@ -626,7 +645,7 @@ table {
         }
     }
 
-    input[type="text"], input[type="password"] {
+    /*input[type="text"], input[type="password"] {
         border: 1px solid #ccc;
         border-radius: 3px;
         display: block;
@@ -634,7 +653,7 @@ table {
         line-height: 30px;
         margin: 5px 0;
         padding-left: 10px;
-    }
+    }*/
 
     .dialog-btns {
         clear: both;
@@ -670,6 +689,10 @@ table {
             font-weight: bold;
             width: 150px;
             margin: 5px 0;
+        }
+        input{
+            .mp_input(250px,32px);
+            margin:4px 0;
         }
 
         .reset, .signup {

@@ -73,9 +73,14 @@ public class MPImage
         }
     }
 
+    public void Edit(int packageid,string description,string url)
+    {
+        DB.SExecuteNonQuery("update image set packageid=?,description=?,url=? where id=?", packageid, description, url, ID);
+    }
+
     public static int Create(int packageid, int fileid, int userid, int via, string url, string description)
     {
-       return  DB.SInsert("insert into image (packageid,fileid,userid,via,url,description) values (?,?,?,?,?,?)", packageid, fileid, userid,via, url, description);
+       return  DB.SInsert("insert into image (packageid,fileid,userid,via,url,description,createdtime) values (?,?,?,?,?,?,?)", packageid, fileid, userid,via, url, description,DateTime.Now);
     }
 
     void SetAttribute(string name, object value)

@@ -509,6 +509,15 @@ table {
   color: #333333;
   left: 50%;
   top: 50%;
+  /*input[type="text"], input[type="password"] {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        margin: 5px 0;
+        padding-left: 10px;
+    }*/
 }
 .dialog-box .dialog-title {
   height: 40px;
@@ -539,16 +548,6 @@ table {
 .dialog-box .dialog-content .more {
   font-size: 13px;
   margin: 5px 0;
-}
-.dialog-box input[type="text"],
-.dialog-box input[type="password"] {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  display: block;
-  height: 30px;
-  line-height: 30px;
-  margin: 5px 0;
-  padding-left: 10px;
 }
 .dialog-box .dialog-btns {
   clear: both;
@@ -629,6 +628,21 @@ table {
 }
 .dialog-box .login-dialog .login:hover {
   background-image: linear-gradient(#00ace6, #008ebd);
+}
+.dialog-box .login-dialog input {
+  border: 1px solid #bfbfbf;
+  font-size: 14px;
+  line-height: 22px;
+  width: 238px;
+  border-radius: 3px;
+  color: #4d4d4d;
+  background: #f7f7f7;
+  padding: 5px 6px;
+  margin: 4px 0;
+}
+.dialog-box .login-dialog input:focus {
+  background: #ffffff;
+  color: black;
 }
 .dialog-box .login-dialog .reset,
 .dialog-box .login-dialog .signup {

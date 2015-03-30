@@ -31,12 +31,12 @@ namespace JSON
     }
     public class Mention
     {
-        public int id { get; set; }
+        public int user_id { get; set; }
         public int pos { get; set; }
         public int len { get; set; }
         public Mention(MPCommentMention mention)
         {
-            id = mention.UserID;
+            user_id = mention.UserID;
             pos = mention.Position;
             len = mention.Length;
         }
@@ -183,6 +183,8 @@ namespace JSON
         public JSON.Package package { get; set; }
         public JSON.File file { get; set; }
         public JSON.User user { get; set; }
+        public string source { get; set; }
+        public string host { get; set; }
         public string description { get; set; }
         public bool praised { get; set; }
         public List<JSON.Comment> comments { get; set; }
@@ -191,6 +193,8 @@ namespace JSON
         public ImageDetail(MPImage image, MPUser currentUser)
         {
             id = image.ID;
+            source = image.Url;
+            host = new Uri(image.Url).Host;
             package = new JSON.Package(new MPPackage(image.PackageID));
             file = new JSON.File(new MPFile(image.FileID));
             user = new JSON.User(new MPUser(image.UserID));

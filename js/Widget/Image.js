@@ -29,7 +29,7 @@ MPWidget.Image.New = function (image)
     if (image.user.id == MPData.user.id)
     {
         strVar += "<div class=\"right\">";
-        strVar += "    <div class=\"edit\" title=\"编辑\" data-id=\"{0}\" >编辑<\/div>".Format(image.id);
+        strVar += "    <div class=\"edit\" title=\"编辑\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\" >编辑<\/div>".Format(image.id, image.file.hash, image.description);
         strVar += "<\/div>";
     }
     else
@@ -76,8 +76,10 @@ MPWidget.Image.Bind = function ()
 
     function edit_click()
     {
-        var id = $(this).attr("data-id");
-        location.href = "/image/" + id + "/edit";
+        var t = $(this);
+        var hash = t.attr("data-hash");
+        var description=t.attr("data-description")
+        MPCreateImageDialog.New(imageHost + "/" + hash + "_fw236", "编辑图片", description, true, "www.baidu.com");
     }
 
     function img_click(e)

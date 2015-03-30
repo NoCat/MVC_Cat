@@ -77,20 +77,10 @@ var MPWaterFall = {
             return item;
         }
     },
-    New: function (frame, container, columnCount, itemWidth, marginLeft, marginTop, marginRight, marginBottom, autoResize) {
+    New: function (frame, container, columnCount, itemWidth, marginLeft, marginTop, marginRight, marginBottom) {
 
         var waterFall = {};
-
-        //定义是否自动排列,默认为自动,关闭自动排列该参数为false
-
-
-        autoResize = ((autoResize!=undefined) ? autoResize : true);
-        if (autoResize == true) {
-                var wwidth = $(window).width();
-                columnCount = countColumn();
-                $(".wrapper").css("width", columnCount * (itemWidth + marginLeft + marginRight));
-        }
-
+   
         //列数 
         var _columnCount = 1;
         //设置列数,若参数为0,则返回当前列数,否则设定列数
@@ -275,16 +265,15 @@ var MPWaterFall = {
 
         waterFall.onBottom = null;
 
-        Resize();
-
-        function Resize() {
-            if (autoResize) {
-                $(window).on("resize", function () {
-                        var c = countColumn();
-                        $(".wrapper").css("width", c * (itemWidth + marginLeft + marginRight));
-                        waterFall.ColumnCount(c);
-                })
-            }
+        waterFall.Resize = function () {
+            var c = countColumn();
+            $(".wrapper").css("width", c * (itemWidth + marginLeft + marginRight));
+            waterFall.ColumnCount(c);
+            $(window).on("resize", function () {
+                var c = countColumn();
+                $(".wrapper").css("width", c * (itemWidth + marginLeft + marginRight));
+                waterFall.ColumnCount(c);
+            })
         }
 
         function countColumn() {

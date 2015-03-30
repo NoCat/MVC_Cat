@@ -42,6 +42,7 @@ namespace MVC_Cat.Controllers
             }
             else
             {
+                ViewBag.Title = "确认注册_喵帕斯";
                 ViewBag.Email = email;
                 ViewBag.MPData = new { };
                 return View();
@@ -72,6 +73,7 @@ namespace MVC_Cat.Controllers
             }
             else
             {
+                ViewBag.Title = "修改密码_喵帕斯";
                 ViewBag.Token = token;
                 return View();
             }
