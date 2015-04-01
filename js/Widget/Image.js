@@ -1,61 +1,24 @@
-﻿/// <reference path="window.js" />
+﻿/// <reference path="template/image.js" />
+/// <reference path="window.js" />
 /// <reference path="../Dialog/CreateImageDialog.js" />
 /// <reference path="../Format/User.js" />
 /// <reference path="../main.js" />
 /// <reference path="../Dialog/MessageBox.js" />
-
-MPWidget.Image = {};
 MPWidget.Image.Description = function (description)
 {
-        description = MPHtmlEncode(description);
-        return description.replace(/(#.*#)/g, function (word)
-        {
-            var w = $.trim(word.substring(1, word.length - 1));
-            if (w == "")
-                return word;
+    description = MPHtmlEncode(description);
+    return description.replace(/(#.*#)/g, function (word)
+    {
+        var w = $.trim(word.substring(1, word.length - 1));
+        if (w == "")
+            return word;
 
-            return "<a href=\"/search/{0}\">{1}</a>".FormatNoEncode(encodeURIComponent(w), word);
-        });
+        return "<a href=\"/search/{0}\">{1}</a>".FormatNoEncode(encodeURIComponent(w), word);
+    });
 };
-MPWidget.Image.New = function (image)
+MPWidget.Image.New = function (image,options)
 {
-    var fuser = MPFormat.User.New(image.user);
-    var strVar = "";
-    strVar += "<div class=\"widget-image\" data-id=\"{0}\">".Format(image.id);
-    strVar += "    <div class=\"actions\">";
-    strVar += "         <div class=\"left\">";
-    strVar += "             <div class=\"repin\" title=\"转存到我的图包\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\">转存<\/div>".Format(image.id,image.file.hash,image.description);
-    strVar += "         <\/div>";
-    if (image.user.id == MPData.user.id)
-    {
-        strVar += "<div class=\"right\">";
-        strVar += "    <div class=\"edit\" title=\"编辑\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\" >编辑<\/div>".Format(image.id, image.file.hash, image.description);
-        strVar += "<\/div>";
-    }
-    else
-    {
-        strVar += "<div class=\"right\">";
-        strVar += "    <div class=\"praise\" title=\"赞一个\" data-id=\"{0}\" >赞<\/div>".Format(image.id);
-        strVar += "<\/div>";
-    }
-    strVar += "    <\/div>";
-    strVar += "    <a class=\"img\" href=\"{0}\">".Format("/image/"+image.id);
-    strVar += "        <img src=\"{0}\" width=\"236\" height=\"{1}\" />".Format(imageHost + "/" + image.file.hash + "_fw236", Math.ceil(236 * image.file.height / image.file.width));
-    strVar += "        <div class=\"cover\"><\/div>";
-    strVar += "    <\/a>";
-    strVar += "    <div class=\"description\">{0}<\/div>".FormatNoEncode(this.Description(image.description));
-    strVar += "    <div class=\"info\">";
-    strVar += "        <a class=\"avt\" href=\"{0}\">".Format(fuser.Home());
-    strVar += "            <img src=\"{0}\" />".Format(fuser.Avt());
-    strVar += "        <\/a>";
-    strVar += "        <div class=\"text\">";
-    strVar += "            <div class=\"line\"><a href=\"{0}\">{1}<\/a><span>收集到<\/span><\/div>".Format(fuser.Home(), fuser.Name());
-    strVar += "            <div class=\"line\"><a href=\"{0}\">{1}<\/a><\/div>".Format("/package/" + image.package.id, image.package.title);
-    strVar += "        <\/div>";
-    strVar += "    <\/div>";
-    strVar += "<\/div>";
-
-    return $(strVar);
+    return $(this.Template(image,options));
 };
 MPWidget.Image.Bind = function ()
 {
@@ -78,7 +41,7 @@ MPWidget.Image.Bind = function ()
     {
         var t = $(this);
         var hash = t.attr("data-hash");
-        var description=t.attr("data-description")
+        var description = t.attr("data-description")
         MPCreateImageDialog.New(imageHost + "/" + hash + "_fw236", "编辑图片", description, true, "www.baidu.com");
     }
 
@@ -87,7 +50,7 @@ MPWidget.Image.Bind = function ()
         //防止浏览器跳转
         e.preventDefault();
         var viewerWindow = $(".widget_window");
-        if(viewerWindow.length==0)
+        if (viewerWindow.length == 0)
         {
             var viewerWindow = MPWidget.Window.New();
             var body = $("body");
@@ -95,7 +58,7 @@ MPWidget.Image.Bind = function ()
             {
                 body.removeAttr("style");
             }
-            $("body").append(viewerWindow).css("overflow","hidden");            
+            $("body").append(viewerWindow).css("overflow", "hidden");
         }
         viewerWindow.Init($(this).parents(".widget-image"));
     }
@@ -115,7 +78,8 @@ MPWidget.Image.Bind = function ()
                 if (data.code == 0)
                 {
                     var box = MPMessageBox.New("ok", "转存成功");
-                    box.onOK = function () {
+                    box.onOK = function ()
+                    {
                         dialog.Close();
                     }
                     //转存成功后的处理,默认提示成功后一秒钟关闭

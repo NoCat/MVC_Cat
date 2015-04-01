@@ -18,7 +18,7 @@ $(function () {
             break;
 
         default:
-            waterfallPush(packageInfo, MPWidget.Image, null, "id");
+            waterfallPush(packageInfo, MPWidget.Image, MPWidget.Image.Options.ShowSource, "id");
             break;
     }
     packageInfo.waterfall.Resize();

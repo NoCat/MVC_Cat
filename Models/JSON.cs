@@ -77,7 +77,7 @@ namespace JSON
         public bool followed { set; get; }
 
         public UserDetail(MPUser user, MPUser currentUser)
-        {            
+        {
             id = user.ID;
             name = user.Name;
             default_head = user.DefaultHead;
@@ -194,7 +194,7 @@ namespace JSON
         {
             id = image.ID;
             source = image.Url;
-            host = new Uri(image.Url).Host;
+            host = image.Url == "" ? "" : new Uri(image.Url).Host;
             package = new JSON.Package(new MPPackage(image.PackageID));
             file = new JSON.File(new MPFile(image.FileID));
             user = new JSON.User(new MPUser(image.UserID));

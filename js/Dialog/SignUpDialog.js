@@ -1,4 +1,5 @@
-﻿MPSignUpDialog = {};
+﻿/// <reference path="MessageBox.js" />
+MPSignUpDialog = {};
 MPSignUpDialog.New = function ()
 {
     var dialog = MPDialog.New('<div class="dialog-mask"><div class="dialog-box"><div class="dialog-title"><span class="text">注册</span><div class="dialog-close"></div></div><div class="dialog-content"><div class="signup-dialog"><input class="email" type="text" placeholder="邮箱"><div class="signup">注册</div><div class="more"><span>已经有账号了</span> <span class="login">登录</span></div></div></div></div></div>')
@@ -18,7 +19,7 @@ MPSignUpDialog.New = function ()
             }
             else
             {
-                MPMessageBox.New("warn", "注册邮件发送失败,请重试");
+                MPMessageBox.New(MPMessageBox.Icons.Warn, "注册邮件发送失败,请重试");
             }
 
         }, "json");

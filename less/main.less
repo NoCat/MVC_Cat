@@ -29,22 +29,21 @@
     .btn(darken( @baseWhite,3%),darken(@baseGrey,20%),@height);
 }
 
-.mp_input(@width,@height)
-{
-    @paddingVertical:5px;
-    @paddingHorizontal:6px;
-    border:1px solid darken(@baseWhite,25%);
-    font-size:14px;
-    line-height:@height+(-2*@paddingVertical);
-    width:@width+(-2*@paddingHorizontal);
-    border-radius:3px;
-    color:darken(@baseGrey,10%);
-    background:darken(@baseWhite,3%);
-    padding:@paddingVertical @paddingHorizontal;
+.mp_input(@width,@height) {
+    @paddingVertical: 5px;
+    @paddingHorizontal: 6px;
+    border: 1px solid darken(@baseWhite,25%);
+    font-size: 14px;
+    line-height: @height+(-2*@paddingVertical);
+    width: @width+(-2*@paddingHorizontal);
+    border-radius: 3px;
+    color: darken(@baseGrey,10%);
+    background: darken(@baseWhite,3%);
+    padding: @paddingVertical @paddingHorizontal;
 
-    &:focus{
-        background:@baseWhite;
-        color:black;
+    &:focus {
+        background: @baseWhite;
+        color: black;
     }
 }
 
@@ -644,7 +643,6 @@ table {
             margin: 5px 0;
         }
     }
-
     /*input[type="text"], input[type="password"] {
         border: 1px solid #ccc;
         border-radius: 3px;
@@ -654,7 +652,6 @@ table {
         margin: 5px 0;
         padding-left: 10px;
     }*/
-
     .dialog-btns {
         clear: both;
         padding: 10px 20px;
@@ -690,9 +687,10 @@ table {
             width: 150px;
             margin: 5px 0;
         }
-        input{
+
+        input {
             .mp_input(250px,32px);
-            margin:4px 0;
+            margin: 4px 0;
         }
 
         .reset, .signup {
@@ -907,6 +905,7 @@ table {
                     }
                 }
             }
+
             .description {
                 border: @innerBorder;
                 border-radius: 3px;
@@ -929,13 +928,26 @@ table {
                 }
             }
 
-            .source{
-                width:@rightWidth+(-10px);
+            .source {
+                width: @rightWidth+(-10px);
             }
         }
     }
 
-    .signup-success-dialog {
+    .reset-password-dialog{
+        @height:30px;
+        span{
+            line-height:@height;
+            font-size:15px;
+        }
+
+        input{           
+            .mp_input(200px,@height);
+            margin-left:10px;
+        }
+    }
+
+    .signup-success-dialog,.reset-password-success-dialog {
         font-size: 14px;
 
         .email {
@@ -1056,48 +1068,66 @@ table {
         }
     }
 
-    .follow {
-        @height: 26px;
+    @actionsHeight: 32px;
 
+    .actions {
         position: relative;
-        height: @height;
+        height: @actionsHeight;
         margin-top: 10px;
+    }
 
-        .avt {
-            position: absolute;
-            left: 0;
-            top: 0;
+    .avt {
+        position: absolute;
+        left: 0;
+        top: 0;
 
-            img {
-                width: @height;
-                height: @height;
-            }
+        img {
+            width: @actionsHeight;
+            height: @actionsHeight;
         }
+    }
 
-        .username {
-            position: absolute;
-            line-height: @height;
-            display: block;
-            font-size: 13px;
-            top: 0;
-            left: @height+5px;
+    .username {
+        position: absolute;
+        line-height: @actionsHeight;
+        display: block;
+        font-size: 13px;
+        top: 0;
+        left: @actionsHeight+5px;
+    }
+
+    .btn {
+        .btnwhite(@actionsHeight);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+    }
+
+    .btn2 {
+        .btnwhite(@actionsHeight);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .follow {
+        &:after{
+            content:"关注";
         }
+    }
 
-        .follow-btn {
-            .btnwhite(@height);
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 40px;
+    .unfollow{
+        &:after{
+            content:"已关注";
         }
+    }
 
-        .follow-btn2 {
-            .btnwhite(@height);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+    .edit{
+        &:after{
+            content:"编辑";
         }
     }
 }
@@ -1246,7 +1276,7 @@ table {
     width: 236px;
     background: @baseWhite;
     box-shadow: 0 0 5px #333;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
     font-size: 13px;
     position: absolute;
@@ -1312,8 +1342,17 @@ table {
         border-top: 1px solid darken(@baseWhite,10%);
         background-color: darken(@baseWhite,2.5%);
         padding: 10px;
-        height: @infoHeight;
+        /*height: @infoHeight;*/
         clear: both;
+
+        .source{
+            font-size:13px;
+            color:@baseBlue;
+
+            &:hover{
+                text-decoration:underline;
+            }
+        }
 
         .avt {
             float: left;

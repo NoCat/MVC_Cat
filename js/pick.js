@@ -15,13 +15,9 @@ $(document).ready(function ()
     //添加onOK处理函数
     createImageDialog.onOK = function ()
     {
-        $.post(host + "/ajax/pick", {from:MPData.from,source:MPData.source,description:MPHtmlEncode(MPData.description),package_id:createImageDialog.packageId},function myfunction(data) {
+        $.post(host + "/ajax/pick", {from:MPData.from,source:MPData.source,description:MPHtmlEncode(createImageDialog.description),package_id:createImageDialog.packageId},function myfunction(data) {
             if (data.code==0) {
-                createImageDialog.Close();
-                MPMessageBox.New(MPMessageBox.Icons.OK,"成功收集了图片,窗口将在五秒钟后关闭");
-                setTimeout(function myfunction() {
                     window.close();
-                },5000);
             }
             else {
                 MPMessageBox.New(MPMessageBox.Icons.Error,data.msg);

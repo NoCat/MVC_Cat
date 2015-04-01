@@ -869,22 +869,48 @@ table {
 .dialog-box .create-image-dialog .right .source {
   width: 290px;
 }
-.dialog-box .signup-success-dialog {
+.dialog-box .reset-password-dialog span {
+  line-height: 30px;
+  font-size: 15px;
+}
+.dialog-box .reset-password-dialog input {
+  border: 1px solid #bfbfbf;
+  font-size: 14px;
+  line-height: 20px;
+  width: 188px;
+  border-radius: 3px;
+  color: #4d4d4d;
+  background: #f7f7f7;
+  padding: 5px 6px;
+  margin-left: 10px;
+}
+.dialog-box .reset-password-dialog input:focus {
+  background: #ffffff;
+  color: black;
+}
+.dialog-box .signup-success-dialog,
+.dialog-box .reset-password-success-dialog {
   font-size: 14px;
 }
-.dialog-box .signup-success-dialog .email {
+.dialog-box .signup-success-dialog .email,
+.dialog-box .reset-password-success-dialog .email {
   font-weight: bold;
 }
 .dialog-box .signup-success-dialog .resend,
-.dialog-box .signup-success-dialog .return {
+.dialog-box .reset-password-success-dialog .resend,
+.dialog-box .signup-success-dialog .return,
+.dialog-box .reset-password-success-dialog .return {
   color: #0099cc;
   cursor: pointer;
 }
 .dialog-box .signup-success-dialog .resend:hover,
-.dialog-box .signup-success-dialog .return:hover {
+.dialog-box .reset-password-success-dialog .resend:hover,
+.dialog-box .signup-success-dialog .return:hover,
+.dialog-box .reset-password-success-dialog .return:hover {
   text-decoration: underline;
 }
-.dialog-box .signup-success-dialog .return {
+.dialog-box .signup-success-dialog .return,
+.dialog-box .reset-password-success-dialog .return {
   margin-top: 15px;
 }
 .dialog-box .create-package-dialog {
@@ -999,33 +1025,33 @@ table {
 .widget-package .previews .empty-package h4 {
   color: #666666;
 }
-.widget-package .follow {
+.widget-package .actions {
   position: relative;
-  height: 26px;
+  height: 32px;
   margin-top: 10px;
 }
-.widget-package .follow .avt {
+.widget-package .avt {
   position: absolute;
   left: 0;
   top: 0;
 }
-.widget-package .follow .avt img {
-  width: 26px;
-  height: 26px;
+.widget-package .avt img {
+  width: 32px;
+  height: 32px;
 }
-.widget-package .follow .username {
+.widget-package .username {
   position: absolute;
-  line-height: 26px;
+  line-height: 32px;
   display: block;
   font-size: 13px;
   top: 0;
-  left: 31px;
+  left: 37px;
 }
-.widget-package .follow .follow-btn {
-  padding: 0 13px;
-  font-size: 13px;
-  line-height: 24px;
-  height: 24px;
+.widget-package .btn {
+  padding: 0 16px;
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
   text-align: center;
   cursor: pointer;
   border-radius: 3px;
@@ -1037,14 +1063,14 @@ table {
   right: 0;
   width: 40px;
 }
-.widget-package .follow .follow-btn:hover {
+.widget-package .btn:hover {
   background-image: linear-gradient(#ffffff, #ebebeb);
 }
-.widget-package .follow .follow-btn2 {
-  padding: 0 13px;
-  font-size: 13px;
-  line-height: 24px;
-  height: 24px;
+.widget-package .btn2 {
+  padding: 0 16px;
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
   text-align: center;
   cursor: pointer;
   border-radius: 3px;
@@ -1057,8 +1083,17 @@ table {
   right: 0;
   bottom: 0;
 }
-.widget-package .follow .follow-btn2:hover {
+.widget-package .btn2:hover {
   background-image: linear-gradient(#ffffff, #ebebeb);
+}
+.widget-package .follow:after {
+  content: "关注";
+}
+.widget-package .unfollow:after {
+  content: "已关注";
+}
+.widget-package .edit:after {
+  content: "编辑";
 }
 .widget-search {
   height: 26px;
@@ -1175,7 +1210,7 @@ table {
   width: 236px;
   background: #ffffff;
   box-shadow: 0 0 5px #333;
-  border-radius: 15px;
+  border-radius: 10px;
   overflow: hidden;
   font-size: 13px;
   position: absolute;
@@ -1265,8 +1300,15 @@ table {
   border-top: 1px solid #e6e6e6;
   background-color: #f9f9f9;
   padding: 10px;
-  height: 36px;
+  /*height: @infoHeight;*/
   clear: both;
+}
+.widget-image .info .source {
+  font-size: 13px;
+  color: #0099cc;
+}
+.widget-image .info .source:hover {
+  text-decoration: underline;
 }
 .widget-image .info .avt {
   float: left;

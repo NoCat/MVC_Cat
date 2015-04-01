@@ -17,7 +17,6 @@ namespace MVC_Cat.Controllers
             {
                 throw new MiaopassNotLoginException();
             }
-
             return user;
         }
         public ActionResult Index(string act)
