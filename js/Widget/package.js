@@ -1,13 +1,8 @@
-﻿/// <reference path="package_template.js" />
-/// <reference path="../Format/User.js" />
-/// <reference path="../main.js" />
-/// <reference path="widget.js" />
-
+﻿/// <reference path="../include.js" />
 
 MPWidget.Package.New = function (packageDetail, type)
 {
-    type = type ? type : this.Types.BigButton;
-    var res = $(this.Template(packageDetail,type));
+    var res = $(MPTemplate.Widget.Package(packageDetail,type));
     return res;
 }
 

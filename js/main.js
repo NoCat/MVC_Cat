@@ -38,8 +38,10 @@ String.prototype.FormatNoEncode = function (arg1, arg2)
 }
 
 MPData = {};
+MPTemplate = {};
 MPWidget = {};
 MPFormat = {};
+
 
 var MPWaterFall = {
     Item: {

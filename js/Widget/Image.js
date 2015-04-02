@@ -1,9 +1,5 @@
-﻿/// <reference path="template/image.js" />
-/// <reference path="window.js" />
-/// <reference path="../Dialog/CreateImageDialog.js" />
-/// <reference path="../Format/User.js" />
-/// <reference path="../main.js" />
-/// <reference path="../Dialog/MessageBox.js" />
+﻿/// <reference path="../include.js" />
+
 MPWidget.Image.Description = function (description)
 {
     description = MPHtmlEncode(description);
@@ -18,7 +14,7 @@ MPWidget.Image.Description = function (description)
 };
 MPWidget.Image.New = function (image,options)
 {
-    return $(this.Template(image,options));
+    return $(MPTemplate.Widget.Image(image,options));
 };
 MPWidget.Image.Bind = function ()
 {
