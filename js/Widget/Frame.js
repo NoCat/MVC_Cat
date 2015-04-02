@@ -1,5 +1,4 @@
-﻿/// <reference path="../include.js" />
-
+﻿
 MPWidget.Frame.New = function ()
 {
     var content = $(MPTemplate.Widget.Frame());

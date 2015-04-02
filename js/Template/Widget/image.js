@@ -8,7 +8,7 @@ MPTemplate.Widget.Image = function (data, options)
     strVar += "<div class=\"widget-image\" data-id=\"{0}\">".Format(data.id);
     strVar += "    <div class=\"actions\">";
     strVar += "         <div class=\"left\">";
-    strVar += "             <div class=\"repin\" title=\"转存到我的图包\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\">转存<\/div>".Format(data.id, data.file.hash, data.description);
+    strVar += "             <div class=\"resave\" title=\"转存到我的图包\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\">转存<\/div>".Format(data.id, data.file.hash, data.description);
     strVar += "         <\/div>";
     if (data.user.id == MPData.user.id)
     {

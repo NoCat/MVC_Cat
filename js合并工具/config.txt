@@ -16,6 +16,12 @@
 
 ../js/Format/User.js
 
+../js/widget.js
+
+../js/Widget/template/package.js
+../js/Widget/template/image.js
+../js/Widget/template/frame.js
+
 ../js/Widget/Frame.js
 ../js/Widget/Search.js
 ../js/Widget/image.js

@@ -31,8 +31,6 @@ namespace MVC_Cat.Controllers
             }
 
             ViewBag.Title = "首页_喵帕斯";
-            ViewBag.Keywords = "动漫 acg 图片 图包";
-            ViewBag.Description = "专注于动漫图片的收集和分享";
             ViewBag.MPData = new
             {
                 user=new JSON.User(user),

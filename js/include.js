@@ -13,7 +13,6 @@
 /// <reference path="search.js" />
 /// <reference path="signup-email.js" />
 /// <reference path="user.js" />
-/// <reference path="Widget/Frame.js" />
 /// <reference path="Format/User.js" />
 /// <reference path="Dialog/CreateImageDialog.js" />
 /// <reference path="Dialog/CreatePackageDialog.js" />
@@ -25,17 +24,17 @@
 /// <reference path="Dialog/SignUpSuccessDialog.js" />
 /// <reference path="Dialog/TitleDialog.js" />
 /// <reference path="Dialog/UploadDialog.js" />
+//组件实现
 /// <reference path="Widget/image-view.js" />
 /// <reference path="Widget/Image.js" />
-/// <reference path="Page/search.js" />
 /// <reference path="Widget/package-info.js" />
 /// <reference path="Widget/package.js" />
 /// <reference path="Widget/Search.js" />
 /// <reference path="Widget/user-info.js" />
 /// <reference path="Widget/User.js" />
-/// <reference path="Widget/widget.js" />
+/// <reference path="Widget/Frame.js" />
 /// <reference path="Widget/window.js" />
-//模板部分
+//模版
 /// <reference path="Template/template.js" />
 /// <reference path="Template/Page/search.js" />
 /// <reference path="Template/Widget/image.js" />
