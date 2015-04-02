@@ -5,12 +5,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><%=ViewBag.Title==null?"":ViewBag.Title %></title>
-    <link rel="shortcut icon" href="favicon.ico" />    
-    <meta name="keywords" content="<%=ViewBag.Keywords==null?"": ViewBag.Keywords%>" />
-    <meta name="description" content="<%=ViewBag.Description==null?"": ViewBag.Description%>" />
+    <title><%=ViewBag.Title==null?"喵帕斯":ViewBag.Title %></title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta name="keywords" content="<%=ViewBag.Keywords==null?"动漫 acg 图片 图包": ViewBag.Keywords%>" />
+    <meta name="description" content="<%=ViewBag.Description==null?"专注于动漫图片的收集和分享": ViewBag.Description%>" />
     <link rel="stylesheet" type="text/css" href="<%=ResolveUrl("~/css/main.css") %>" />
-        <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
     <script type="text/javascript" src="<%=ResolveUrl("~/js/jquery.cookie.js")%>"></script>
     <script src="<%=ResolveClientUrl("~/js/config.js") %>"></script>
     <script src="<%=ResolveClientUrl("~/js/main.js") %>"></script>
@@ -30,8 +30,11 @@
 
     <script src="<%=ResolveClientUrl("~/js/Widget/widget.js") %>"></script>
 
-    <script src="<%=ResolveClientUrl("~/js/Widget/template/package.js") %>"></script>
-    <script src="<%=ResolveClientUrl("~/js/Widget/template/image.js") %>"></script>
+    <script src="<%=ResolveClientUrl("~/js/template/template.js") %>"></script>
+    <script src="<%=ResolveClientUrl("~/js/template/page/search.js") %>"></script>
+    <script src="<%=ResolveClientUrl("~/js/template/widget/package.js") %>"></script>
+    <script src="<%=ResolveClientUrl("~/js/template/widget/image.js") %>"></script>
+    <script src="<%=ResolveClientUrl("~/js/template/widget/frame.js") %>"></script>
 
     <script src="<%=ResolveClientUrl("~/js/Widget/Frame.js") %>"></script>
     <script src="<%=ResolveClientUrl("~/js/Widget/Search.js") %>"></script>

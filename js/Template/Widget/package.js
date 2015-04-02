@@ -1,7 +1,8 @@
-﻿/// <reference path="../widget.js" />
+﻿/// <reference path="../../include.js" />
 
-MPWidget.Package.Template=function(data,options)
+MPTemplate.Widget.Package=function(data,options)
 {
+    options= options ? options : MPTemplate.Widget.Package.Options.BigButton;
     var strVar = "";
     strVar += "<div class=\"widget-package\">";
     strVar += "    <a class=\"previews\" href=\"{0}\">".Format(host + "/package/" + data.id);
@@ -44,7 +45,7 @@ MPWidget.Package.Template=function(data,options)
     {
         switch (options)
         {           
-            case this.Types.SmallButton:
+            case MPTemplate.Widget.Package.Options.SmallButton:
                 strVar += "        <a class=\"avt\" href=\"{0}\">".Format(fuser.Home());
                 strVar += "            <img src=\"{0}\" />".Format(fuser.Avt());
                 strVar += "        <\/a>";
@@ -58,7 +59,7 @@ MPWidget.Package.Template=function(data,options)
                     strVar += "        <div class=\"btn follow\" data-id=\"{0}\"><\/div>".Format(fuser.ID());
                 }
                 break;
-            case this.Types.BigButton:
+            case MPTemplate.Widget.Package.Options.BigButton:
                 if (data.user.followed == true)
                 {
                     strVar += "        <div class=\"btn2 unfollow\" data-id=\"{0}\"><\/div>".Format(fuser.ID());
@@ -75,7 +76,7 @@ MPWidget.Package.Template=function(data,options)
     return strVar;
 }
 
-MPWidget.Package.Types = {
+MPTemplate.Widget.Package.Options = {
     SmallButton: 0,
     BigButton: 1
 };

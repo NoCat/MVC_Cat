@@ -2,3 +2,4 @@
 
 MPWidget.Package = {};
 MPWidget.Image = {};
+MPWidget.Frame = {};

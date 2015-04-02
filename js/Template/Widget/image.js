@@ -1,18 +1,14 @@
-﻿/// <reference path="../widget.js" />
-MPWidget.Image.Options = {
-    ShowUser: 0,
-    ShowSource: 1
-};
+﻿/// <reference path="../../include.js" />
 
-MPWidget.Image.Template = function (data, options)
+MPTemplate.Widget.Image = function (data, options)
 {
-    options = options ? options : this.Options.ShowUser;
+    options = options ? options : MPTemplate.Widget.Image.Options.ShowUser;
     var fuser = MPFormat.User.New(data.user);
     var strVar = "";
     strVar += "<div class=\"widget-image\" data-id=\"{0}\">".Format(data.id);
     strVar += "    <div class=\"actions\">";
     strVar += "         <div class=\"left\">";
-    strVar += "             <div class=\"repin\" title=\"转存到我的图包\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\">转存<\/div>".Format(data.id, data.file.hash, data.description);
+    strVar += "             <div class=\"resave\" title=\"转存到我的图包\" data-id=\"{0}\" data-hash=\"{1}\" data-description=\"{2}\">转存<\/div>".Format(data.id, data.file.hash, data.description);
     strVar += "         <\/div>";
     if (data.user.id == MPData.user.id)
     {
@@ -31,9 +27,9 @@ MPWidget.Image.Template = function (data, options)
     strVar += "        <img src=\"{0}\" width=\"236\" height=\"{1}\" />".Format(imageHost + "/" + data.file.hash + "_fw236", Math.ceil(236 * data.file.height / data.file.width));
     strVar += "        <div class=\"cover\"><\/div>";
     strVar += "    <\/a>";
-    strVar += "    <div class=\"description\">{0}<\/div>".FormatNoEncode(this.Description(data.description));
+    strVar += "    <div class=\"description\">{0}<\/div>".FormatNoEncode(MPWidget.Image.Description(data.description));
     strVar += "    <div class=\"info\">";
-    if (options == this.Options.ShowUser)
+    if (options == MPTemplate.Widget.Image.Options.ShowUser)
     {
         strVar += "        <a class=\"avt\" href=\"{0}\">".Format(fuser.Home());
         strVar += "            <img src=\"{0}\" />".Format(fuser.Avt());
@@ -52,3 +48,8 @@ MPWidget.Image.Template = function (data, options)
 
     return strVar;
 }
+
+MPTemplate.Widget.Image.Options = {
+    ShowUser: 0,
+    ShowSource: 1
+};
