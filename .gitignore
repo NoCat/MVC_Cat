@@ -1,0 +1,5 @@
+packages/*
+MVC_Cat/bin/*
+MVC_Cat/obj/*
+MVC_Cat/properties/*
+*.config
